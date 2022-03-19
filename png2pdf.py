@@ -1,9 +1,9 @@
 import argparse
-import datetime
+import os
+
+from PIL import Image
 
 parser = argparse.ArgumentParser(description="This is example Taskick script.")
-parser.add_argument("--message", default="world!", type=str)
-# Watchdog events
 parser.add_argument("--event_type", default=None, type=str)
 parser.add_argument("--src_path", default="", type=str)
 parser.add_argument("--dest_path", default="", type=str)
@@ -12,15 +12,14 @@ args = parser.parse_args()
 
 
 def main():
-    now = datetime.datetime.now()
-    if args.event_type is None:
-        print(f"{now}: hello {args.message}")
-    else:
-        print(
-            "{:}: event_type: {:s} src: {:s} dest: {:s} is_dir: {:}".format(
-                now, args.event_type, args.src_path, args.dest_path, args.is_directory
-            )
-        )
+    print(f"Input: {args.src_path}")
+    basename = os.path.basename(args.src_path)
+    filename = os.path.splitext(basename)[0]
+    output_path = os.path.join("./output/", f"{filename}.pdf")
+    img = Image.open(args.src_path)
+    img = img.convert("RGB")
+    img.save(output_path)
+    print(f"Sccuessfuly converted: {output_path}")
 
 
 if __name__ == "__main__":

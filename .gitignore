@@ -1,5 +1,8 @@
 .vscode
 *.swp
+sandbox/*
+input/*
+output/*
 !.gitkeep
 
 # Byte-compiled / optimized / DLL files
