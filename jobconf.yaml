@@ -1,4 +1,4 @@
-example_task_1:
+wellcome_taskick:
   status: 1
   commands:
     - echo
@@ -6,7 +6,7 @@ example_task_1:
   execution:
     event_type: null
 
-auto_remove_input_folder:
+remove_input_folder:
   status: 1
   commands:
     - rm -f input/*
@@ -20,7 +20,7 @@ png2pdf:
   status: 1
   commands:
     - python
-    - ./png2pdf.py
+    - ./src/png2pdf.py
   execution:
     immediate: false
     event_type: file
