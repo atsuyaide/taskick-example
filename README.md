@@ -9,7 +9,7 @@
 3. 変換したPDFを`output`フォルダに保存.
 4. inputフォルダを定期的に削除し, 綺麗な状態を保つ.
 
-使い方・動作例は[Taskick](https://github.com/kappa000/taskick-example.git)を参照してください.
+使い方・動作例は[Taskick](https://github.com/atsuyaide/taskick-example.git)を参照してください.
 
 ## Structures
 
@@ -64,7 +64,7 @@ png2pdf:
     detail:
       path: ./input
       recursive: false
-      handler: # Support all watchdog.handler.
+      handler: # Support all watchdog.events.*EventHandler.
         name: PatternMatchingEventHandler
         args: # This args is passed to the handler.
           patterns:
