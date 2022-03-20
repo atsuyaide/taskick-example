@@ -9,7 +9,7 @@ The application works with the following algorithm.
 3. The converted PDF is saved in the `output` folder.
 4. The input folder is deleted periodically to keep it clean.
 
-See [Taskick](https://github.com/atsuyaide/taskick-example.git) for usage.
+See [Taskick](https://github.com/atsuyaide/taskick.git) for usage.
 
 ## Structures
 
