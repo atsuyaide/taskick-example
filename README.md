@@ -19,6 +19,8 @@ This repository consists of the following folders.
 ├── input           # When a PNG image is saved here, png2pdf.py is executed.
 ├── output          # Converted PDF is saved in this folder.
 ├── jobconf.yaml    # Set the script to run and the startup schedule.
+├── logging.yaml    # Can be specified by using the -l option.
+├── logging.conf    # Can be specified by using the -l option.
 ├── sandbox         # Use it as you like:)
 └── src
     └── png2pdf.py  # Script to convert PNG to PDF.
