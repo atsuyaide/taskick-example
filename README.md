@@ -1,37 +1,37 @@
 # Taskick Example Application
 
-ここではPNG画像を特定のフォルダに保存されたとき, その画像をPDFに変換し出力フォルダに保存するアプリケーションを作成します.
+Here we will create an application that, when a PNG image is saved to a specific folder, converts the image to PDF and saves it to the output folder.
 
-アプリケーションは以下のアルゴリズムで動作します.
+The application works with the following algorithm.
 
-1. `input`フォルダーにPNGファイルが保存されると, それを検知.
-2. 保存されたファイルパスを変換スクリプトに渡し, PDFに変換.
-3. 変換したPDFを`output`フォルダに保存.
-4. inputフォルダを定期的に削除し, 綺麗な状態を保つ.
+1. Detects when a PNG file is saved in the `input` folder.
+2. The saved file path is propagated to the conversion script, which converts the file to PDF.
+3. The converted PDF is saved in the `output` folder.
+4. The input folder is deleted periodically to keep it clean.
 
-使い方・動作例は[Taskick](https://github.com/atsuyaide/taskick-example.git)を参照してください.
+See [Taskick](https://github.com/atsuyaide/taskick-example.git) for usage.
 
 ## Structures
 
-このリポジトリは以下のフォルダ構成です.
+This repository consists of the following folders.
 
 ```text
-├── input           # ここにPNG画像が保存されるとアプリケーションを起動する
-├── output          # 変換されたPDFはこのフォルダに保存される
-├── jobconf.yaml    # 実効するスクリプトや起動スケジュールなどが設定可能
-├── sandbox         # 好きに使ってください:)
+├── input           # When a PNG image is saved here, png2pdf.py is executed.
+├── output          # Converted PDF is saved in this folder.
+├── jobconf.yaml    # Set the script to run and the startup schedule.
+├── sandbox         # Use it as you like:)
 └── src
-    └── png2pdf.py  # PNGをPDFに変換するスクリプト
+    └── png2pdf.py  # Script to convert PNG to PDF.
 ```
 
-Taskickとそれぞれのファイルは以下の責任範囲を持ちます.
+Tusk and each file share functions and responsibilities as follows.
 
-> 1. `input`フォルダーにPNGファイルが保存されると, それを検知. <- Taskick(`jobconf.yaml`で設定)
-> 2. 保存されたファイルパスを変換スクリプトに渡し, PDFに変換. <- Taskick(`png2pdf.py`を起動)
-> 3. 変換したPDFを`output`フォルダに保存. <- `png2pdf.py`
-> 4. inputフォルダを定期的に削除し, 綺麗な状態を保つ. <- Taskick(`rm -f input/*.*`)
+> 1. Detects when a PNG file is saved in the `input` folder. <- Taskick(Set jobconf.yaml)
+> 2. The saved file path is propagated to the conversion script, which converts the file to PDF. <- Taskick(Execute png2pdf.py)
+> 3. The converted PDF is saved in the `output` folder. <- png2pdf.py
+> 4. The input folder is deleted periodically to keep it clean. <- Taskick(rm -f input/*.*)
 
-状況設定は以下のYAMLファイルで設定されています.
+The detailed settings are configured in the following YAML(`jobconf.yaml`) file.
 
 ```yaml
 wellcome_taskick: # Task name
@@ -73,11 +73,13 @@ png2pdf:
         - created
 ```
 
-実行間隔や起動基準などの変更は`jobconf.yaml`を編集するのみで可能です.
+## Appendix
 
-例えば,
+The execution interval and the criteria for starting can be changed by simply editing the `jobconf.yaml` file.
 
-- `input`フォルダを掃除する間隔を5分にしたい.
+For example,
+
+- If you want a 5 minute interval to clean the `input` folder .
 
 ```yaml
 when: "*/1 * * * *"
@@ -89,7 +91,7 @@ when: "*/1 * * * *"
 when: "*/5 * * * *"
 ```
 
-- 変換する対象ファイルをPNGだけでなくJPEGも対応させたい.
+- If you want to convert not only PNG but also JPEG files.
 
 ```yaml
 patterns:
