@@ -18,8 +18,8 @@ This repository consists of the following folders.
 ```text
 ├── input           # When a PNG image is saved here, png2pdf.py is executed.
 ├── output          # Converted PDF is saved in this folder.
-├── jobconf.yaml    # Set the script to run and the startup schedule.
-├── logging.yaml    # Can be specified by using the -l option.
+├── main.yaml       # Configuration file to main processing.
+├── welcome.yaml    # Configuration file to display Welcome message at startup
 ├── logging.conf    # Can be specified by using the -l option.
 ├── sandbox         # Use it as you like:)
 └── src
@@ -28,12 +28,12 @@ This repository consists of the following folders.
 
 Tusk and each file share functions and responsibilities as follows.
 
-> 1. Detects when a PNG file is saved in the `input` folder. <- Taskick(Set jobconf.yaml)
+> 1. Detects when a PNG file is saved in the `input` folder. <- Taskick(Set main.yaml)
 > 2. The saved file path is propagated to the conversion script, which converts the file to PDF. <- Taskick(Execute png2pdf.py)
 > 3. The converted PDF is saved in the `output` folder. <- png2pdf.py
 > 4. The input folder is deleted periodically to keep it clean. <- Taskick(rm -f input/*.*)
 
-The detailed settings are configured in the following YAML(`jobconf.yaml`) file.
+The detailed settings are configured in the following YAML(`welcome.yaml` and `main.yaml`) file.
 
 ```yaml
 wellcome_taskick: # Task name
@@ -77,7 +77,7 @@ png2pdf:
 
 ## Appendix
 
-The execution interval and the criteria for starting can be changed by simply editing the `jobconf.yaml` file.
+The execution interval and the criteria for starting can be changed by simply editing the `main.yaml` file.
 
 For example,
 

@@ -1,0 +1,8 @@
+Welcome_taskick:
+  status: 1
+  commands:
+    - echo
+    - $(date) Welcome to Taskick!
+  execution:
+    event_type: null
+

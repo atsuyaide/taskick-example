@@ -1,11 +1,3 @@
-wellcome_taskick:
-  status: 1
-  commands:
-    - echo
-    - $(date) Welcome to Taskick!
-  execution:
-    event_type: null
-
 remove_input_folder:
   status: 1
   commands:
