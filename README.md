@@ -21,7 +21,6 @@ This repository consists of the following folders.
 ├── main.yaml       # Configuration file to main processing.
 ├── welcome.yaml    # Configuration file to display Welcome message at startup
 ├── logging.conf    # Can be specified by using the -l option.
-├── sandbox         # Use it as you like:)
 └── src
     └── png2pdf.py  # Script to convert PNG to PDF.
 ```
