@@ -1,12 +1,14 @@
-remove_input_folder:
+remove_files_in_input_folder:
   status: 1
   commands:
     - rm -f input/*
   execution:
-    immediate: true
+    startup: true # If true, it is executed at startup.
+    await_task:
+      - Welcome_taskick
     event_type: time
     detail:
-      when: "*/1 * * * *"
+      when: "*/1 * * * *" # Crontab format: Run every 1 minute.
 
 png2pdf:
   status: 1
@@ -14,16 +16,16 @@ png2pdf:
     - python
     - ./src/png2pdf.py
   execution:
-    immediate: false
+    startup: false
     event_type: file
-    propagate: true
+    propagate: true # If true, events that occur at runtime (such as the path of an edited file) are passed to the running script.
     detail:
       path: ./input
       recursive: false
-      handler:
+      handler: # Support all watchdog.events.*EventHandler.
         name: PatternMatchingEventHandler
-        args:
+        args: # This args is passed to the handler.
           patterns:
             - "*.png"
-      when:
+      when: # Support created, deleted, modified, closed, moved event.
         - created

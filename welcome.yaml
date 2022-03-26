@@ -1,8 +1,10 @@
-Welcome_taskick:
-  status: 1
+Welcome_taskick: # Task name
+  status: 1 # Task name
   commands:
-    - echo
-    - $(date) Welcome to Taskick!
+    - echo $(date) Welcome to Taskick!
+    - "&&"
+    - echo waiting 5 seconds...
+    - "&&"
+    - sleep 5
   execution:
-    event_type: null
-
+    event_type: null # If event_type is NULL, it is executed only at startup.

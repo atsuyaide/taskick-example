@@ -16,11 +16,15 @@ See [Taskick](https://github.com/atsuyaide/taskick.git) for usage.
 This repository consists of the following folders.
 
 ```text
-├── input           # When a PNG image is saved here, png2pdf.py is executed.
-├── output          # Converted PDF is saved in this folder.
-├── main.yaml       # Configuration file to main processing.
-├── welcome.yaml    # Configuration file to display Welcome message at startup
-├── logging.conf    # Can be specified by using the -l option.
+├── LICENSE
+├── README.md         # This file.
+├── requirements.txt
+├── input             # When a PNG image is saved here, png2pdf.py is executed.
+├── output            # Converted PDF is saved in this folder.
+├── logging.conf      # Can be specified by using the -l option.
+├── logging.yaml      # Can be specified by using the -l option.
+├── welcome.yaml      # Configuration file to display Welcome message at startup
+├── main.yaml         # Configuration file to main processing.
 └── src
     └── png2pdf.py  # Script to convert PNG to PDF.
 ```
@@ -35,20 +39,25 @@ Tusk and each file share functions and responsibilities as follows.
 The detailed settings are configured in the following YAML(`welcome.yaml` and `main.yaml`) file.
 
 ```yaml
-wellcome_taskick: # Task name
-  status: 1 # 0: inactive, 1: active
+Welcome_taskick: # Task name
+  status: 1 # Task name
   commands:
-    - echo
-    - $(date) Welcome to Taskick!
+    - echo $(date) Welcome to Taskick!
+    - "&&"
+    - echo waiting 5 seconds...
+    - "&&"
+    - sleep 5
   execution:
     event_type: null # If event_type is NULL, it is executed only at startup.
 
-remove_input_folder:
+remove_files_in_input_folder:
   status: 1
   commands:
-    - rm -f input/*.*
+    - rm -f input/*
   execution:
-    immediate: true # If true, it is executed at startup.
+    startup: true # If true, it is executed at startup.
+    await_task:
+      - Welcome_taskick
     event_type: time
     detail:
       when: "*/1 * * * *" # Crontab format: Run every 1 minute.
@@ -59,7 +68,7 @@ png2pdf:
     - python
     - ./src/png2pdf.py
   execution:
-    immediate: false
+    startup: false
     event_type: file
     propagate: true # If true, events that occur at runtime (such as the path of an edited file) are passed to the running script.
     detail:
@@ -70,7 +79,7 @@ png2pdf:
         args: # This args is passed to the handler.
           patterns:
             - "*.png"
-      when: # Supprt created, deleted, modified, closed, moved event.
+      when: # Support created, deleted, modified, closed, moved event.
         - created
 ```
 

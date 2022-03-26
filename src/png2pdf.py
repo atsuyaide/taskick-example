@@ -1,9 +1,11 @@
 import argparse
 import os
+import sys
 
 from PIL import Image
 
 parser = argparse.ArgumentParser(description="This is example Taskick script.")
+# Below options are propagate from Watchdog event.
 parser.add_argument("--event_type", default=None, type=str)
 parser.add_argument("--src_path", default="", type=str)
 parser.add_argument("--dest_path", default="", type=str)
@@ -23,4 +25,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
