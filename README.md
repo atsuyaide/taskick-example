@@ -42,45 +42,45 @@ The detailed settings are configured in the following YAML(`welcome.yaml` and `m
 Welcome_taskick: # Task name
   status: 1 # Task name
   commands:
-    - echo $(date) Welcome to Taskick!
+    - "echo $(date) Welcome to Taskick!"
     - "&&"
-    - echo waiting 5 seconds...
+    - "echo waiting 5 seconds..."
     - "&&"
-    - sleep 5
+    - "sleep 5"
   execution:
     event_type: null # If event_type is NULL, it is executed only at startup.
 
 remove_files_in_input_folder:
   status: 1
   commands:
-    - rm -f input/*
+    - "rm -f input/*"
   execution:
     startup: true # If true, it is executed at startup.
     await_task:
-      - Welcome_taskick
-    event_type: time
+      - "Welcome_taskick"
+    event_type: "time"
     detail:
       when: "*/1 * * * *" # Crontab format: Run every 1 minute.
 
 png2pdf:
   status: 1
   commands:
-    - python
-    - ./src/png2pdf.py
+    - "python"
+    - "./src/png2pdf.py"
   execution:
     startup: false
-    event_type: file
+    event_type: "file"
     propagate: true # If true, events that occur at runtime (such as the path of an edited file) are passed to the running script.
     detail:
-      path: ./input
+      path: "./input"
       recursive: false
       handler: # Support all watchdog.events.*EventHandler.
-        name: PatternMatchingEventHandler
+        name: "PatternMatchingEventHandler"
         args: # This args is passed to the handler.
           patterns:
             - "*.png"
       when: # Support created, deleted, modified, closed, moved event.
-        - created
+        - "created"
 ```
 
 ## Appendix
