@@ -40,7 +40,7 @@ The detailed settings are configured in the following YAML(`welcome.yaml` and `m
 
 ```yaml
 Welcome_taskick: # Task name
-  status: 1 # Task name
+  status: 1 # Task status
   commands:
     - "echo $(date) Welcome to Taskick!"
     - "&&"
@@ -57,7 +57,7 @@ remove_files_in_input_folder:
   execution:
     startup: true # If true, it is executed at startup.
     await_task:
-      - "Welcome_taskick" # Set this task to run after the "Welcome_taskick" (welcome.yaml) has finished running.
+      - "Welcome_taskick" # Set this task to run after the "Welcome_taskick" has finished running.
     event_type: "time"
     detail:
       when: "*/1 * * * *" # Crontab format: Run every 1 minute.
