@@ -5,7 +5,7 @@ remove_files_in_input_folder:
   execution:
     startup: true # If true, it is executed at startup.
     await_task:
-      - "Welcome_taskick"
+      - "Welcome_taskick" # Set this task to run after the "Welcome_taskick" (welcome.yaml) has finished running.
     event_type: "time"
     detail:
       when: "*/1 * * * *" # Crontab format: Run every 1 minute.
