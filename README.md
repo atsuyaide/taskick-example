@@ -18,15 +18,17 @@ This repository consists of the following folders.
 ```text
 ├── LICENSE
 ├── README.md         # This file.
-├── requirements.txt
+├── batch.yaml
+├── config
+│   ├── logging.conf  # Can be specified by using the -l option.
+│   ├── logging.yaml  # Can be specified by using the -l option.
+│   ├── main.yaml     # Configuration file to main processing.
+│   └── welcome.yaml  # Configuration file to display Welcome message at startup.
 ├── input             # When a PNG image is saved here, png2pdf.py is executed.
 ├── output            # Converted PDF is saved in this folder.
-├── logging.conf      # Can be specified by using the -l option.
-├── logging.yaml      # Can be specified by using the -l option.
-├── welcome.yaml      # Configuration file to display Welcome message at startup
-├── main.yaml         # Configuration file to main processing.
+├── requirements.txt
 └── src
-    └── png2pdf.py  # Script to convert PNG to PDF.
+    └── png2pdf.py    # Script to convert PNG to PDF.
 ```
 
 Tusk and each file share functions and responsibilities as follows.
@@ -38,6 +40,7 @@ Tusk and each file share functions and responsibilities as follows.
 
 The detailed settings are configured in the following YAML(`welcome.yaml` and `main.yaml`) file.
 
+welcome.yaml
 ```yaml
 Welcome_taskick: # Task name
   status: 1 # Task status
@@ -50,6 +53,10 @@ Welcome_taskick: # Task name
   execution:
     event_type: null # If event_type is NULL, it is executed only at startup.
 
+```
+
+main.yaml
+```yaml
 remove_files_in_input_folder:
   status: 1
   commands:
