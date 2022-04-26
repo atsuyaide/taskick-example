@@ -12,7 +12,7 @@ handlers:
 
 loggers:
   taskick:
-    level: DEBUG
+    level: INFO
     handlers: [console]
     propagate: no
 
